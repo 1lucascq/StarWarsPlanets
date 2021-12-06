@@ -1,9 +1,17 @@
 import React from 'react';
+import PlanetsProvider from './context/PlanetsProvider';
 import './App.css';
+import Header from './components/Header';
+import Table from './components/Table';
+import SearchInputs from './components/SearchInputs';
 
 function App() {
   return (
-    <span>a!</span>
+    <PlanetsProvider>
+      <Header />
+      <SearchInputs />
+      <Table />
+    </PlanetsProvider>
   );
 }
 
