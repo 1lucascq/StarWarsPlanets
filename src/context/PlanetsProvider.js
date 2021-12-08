@@ -3,10 +3,24 @@ import PropTypes from 'prop-types';
 import PlanetsContext from './PlanetsContext';
 
 const URL = 'https://swapi-trybe.herokuapp.com/api/planets/';
-
+// const INITIAL_FILTERS = {
+//   filterByNumericValues: [
+//     {
+//       column: 'population',
+//       comparison: 'maior que',
+//       value: '100000',
+//     },
+//   ],
+// };
+// {
+//   filterByName: {
+//     name: 'Tatoo'
+//   }
+// }
 function Provider({ children }) {
   const [data, setData] = useState({});
   const [query, setQuery] = useState('');
+  const [filters, setFilters] = useState([]);
   useEffect(() => {
     async function getData() {
       const response = await fetch(URL);
@@ -18,9 +32,8 @@ function Provider({ children }) {
 
   // const [filteredResults, setFilteredResults] = useState();
 
-  // console.log('data in provider', data);
   return (
-    <PlanetsContext.Provider value={ { data, query, setQuery } }>
+    <PlanetsContext.Provider value={ { data, query, setQuery, filters, setFilters } }>
       {children}
     </PlanetsContext.Provider>
   );

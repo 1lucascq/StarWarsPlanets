@@ -1,12 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PlanetContext from '../context/PlanetsContext';
+import filterData from '../helpers/filterData';
 import filterResults from '../helpers/filterResults';
 
 export default function Table() {
-  const { data, query } = useContext(PlanetContext);
+  const { data, query, filters } = useContext(PlanetContext);
+  const DEFAULT_DATA = query ? filterResults(query, data) : data;
+  const [renderData, setRenderData] = useState();
+  // if (DEFAULT_DATA.length) setRenderData(DEFAULT_DATA);
+  console.log('first value ', DEFAULT_DATA);
+  useEffect(() => {
+    if (filters.length) {
+      const filteredData = filterData(filters, data);
+      setRenderData(filterResults(query, filteredData));
+    }
+  }, [data, filters, query]);
+  console.log(renderData);
+
   if (!data.length) return <p>Loading</p>;
-  const renderData = query ? filterResults(query, data) : data;
-  console.log('rende');
   // console.log(Object.keys(data.results[0]));
   return (
     <table>

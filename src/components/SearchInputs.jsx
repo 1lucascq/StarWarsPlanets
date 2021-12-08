@@ -3,7 +3,6 @@ import PlanetsContext from '../context/PlanetsContext';
 
 export default function SearchInputs() {
   const { query, setQuery } = useContext(PlanetsContext);
-  console.log(query);
   return (
     <input
       placeholder="Filtre por nome"
