@@ -9,7 +9,7 @@ export default function FilterInputs() {
   const DEFAULT_FILTER = {
     column: 'population',
     comparison: 'maior que',
-    value: '1',
+    value: '0',
   };
   const { filters, setFilters } = useContext(PlanetsContext);
   const [filter, setFilter] = useState(DEFAULT_FILTER);
@@ -33,6 +33,12 @@ export default function FilterInputs() {
 
         </option>
       )));
+  }
+
+  function removeFilter(id) {
+    const info = id.split('-');
+    setFilters(filters.filter((filt) => filt.column !== filters[Number(info[1])].column));
+    COLUMN_OPTIONS.push(info[0]);
   }
 
   return (
@@ -75,7 +81,18 @@ export default function FilterInputs() {
       </button>
 
       {filters.length && filters.map((fil, i) => (
-        <p key={ i }>{`${fil.column} | ${fil.comparison} | ${fil.value}`}</p>
+        <ul key={ i }>
+          <li>
+            {`${fil.column} | ${fil.comparison} | ${fil.value}`}
+          </li>
+          <button
+            type="button"
+            id={ `${fil.column}-${i}` }
+            onClick={ ({ target }) => removeFilter(target.id) }
+          >
+            X
+          </button>
+        </ul>
       )) }
 
     </>

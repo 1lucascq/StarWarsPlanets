@@ -5,20 +5,18 @@ import filterResults from '../helpers/filterResults';
 
 export default function Table() {
   const { data, query, filters } = useContext(PlanetContext);
-  const DEFAULT_DATA = query ? filterResults(query, data) : data;
-  const [renderData, setRenderData] = useState();
-  // if (DEFAULT_DATA.length) setRenderData(DEFAULT_DATA);
-  console.log('first value ', DEFAULT_DATA);
+  const [renderData, setRenderData] = useState([]);
+
   useEffect(() => {
     if (filters.length) {
       const filteredData = filterData(filters, data);
       setRenderData(filterResults(query, filteredData));
+    } else {
+      setRenderData(filterResults(query, data));
     }
   }, [data, filters, query]);
-  console.log(renderData);
 
-  if (!data.length) return <p>Loading</p>;
-  // console.log(Object.keys(data.results[0]));
+  if (!renderData.length) return <p>Loading</p>;
   return (
     <table>
       <thead>

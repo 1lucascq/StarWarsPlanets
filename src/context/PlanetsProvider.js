@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import PlanetsContext from './PlanetsContext';
+// import filterData from '../helpers/filterData';
+// import filterResults from '../helpers/filterResults';
 
 const URL = 'https://swapi-trybe.herokuapp.com/api/planets/';
-// const INITIAL_FILTERS = {
-//   filterByNumericValues: [
-//     {
-//       column: 'population',
-//       comparison: 'maior que',
-//       value: '100000',
-//     },
-//   ],
-// };
-// {
-//   filterByName: {
-//     name: 'Tatoo'
-//   }
-// }
+
 function Provider({ children }) {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [filters, setFilters] = useState([]);
+  // const [filteredData, setFilteredData] = useState([]);
+
   useEffect(() => {
     async function getData() {
       const response = await fetch(URL);
@@ -30,7 +21,16 @@ function Provider({ children }) {
     getData();
   }, []);
 
-  // const [filteredResults, setFilteredResults] = useState();
+  // --> Ver como passar essa lógica para cá (tá no Table.jsx) --> Fica dando loop infinito
+  // useEffect(() => {
+  //   if (filters.length) {
+  //     const filter = filterData(filters, data);
+  //     setFilteredData(filterResults(query, filter));
+  //     console.log('useEffect', filter);
+  //   } else {
+  //     setFilteredData(filterResults(query, data));
+  //   }
+  // }, [data, filteredData, filters, query]);
 
   return (
     <PlanetsContext.Provider value={ { data, query, setQuery, filters, setFilters } }>
