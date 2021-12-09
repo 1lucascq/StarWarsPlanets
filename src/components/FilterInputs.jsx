@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+
 import PlanetsContext from '../context/PlanetsContext';
 
 const COMPARISON_OPTIONS = ['maior que', 'menor que', 'igual a'];
-const COLUMN_OPTIONS = ['population', 'orbital_period', 'diameter',
-  'rotation_period', 'surface_water'];
 
 export default function FilterInputs() {
   const DEFAULT_FILTER = {
@@ -14,12 +13,19 @@ export default function FilterInputs() {
   const { filters, setFilters } = useContext(PlanetsContext);
   const [filter, setFilter] = useState(DEFAULT_FILTER);
   const { column, comparison, value } = filter;
+  const [columnOptions, setColumnOptions] = useState(['population', 'orbital_period',
+    'diameter', 'rotation_period', 'surface_water']);
+
+  useEffect(() => {
+    setColumnOptions(['population', 'orbital_period', 'diameter',
+      'rotation_period', 'surface_water']);
+  }, []);
 
   function handleFilterBtn() {
     setFilters([...filters, filter]);
-    const i = COLUMN_OPTIONS.indexOf(filter.column);
-    COLUMN_OPTIONS.splice(i, 1);
-    setFilter({ ...DEFAULT_FILTER, column: COLUMN_OPTIONS[0] });
+    const i = columnOptions.indexOf(filter.column);
+    columnOptions.splice(i, 1);
+    setFilter({ ...DEFAULT_FILTER, column: columnOptions[0] });
   }
 
   function renderOptions(options) {
@@ -38,7 +44,7 @@ export default function FilterInputs() {
   function removeFilter(id) {
     const info = id.split('-');
     setFilters(filters.filter((filt) => filt.column !== filters[Number(info[1])].column));
-    COLUMN_OPTIONS.push(info[0]);
+    columnOptions.push(info[0]);
   }
 
   return (
@@ -50,7 +56,7 @@ export default function FilterInputs() {
         onChange={ ({ target }) => setFilter({ ...filter, column: target.value }) }
         data-testid="column-filter"
       >
-        {renderOptions(COLUMN_OPTIONS)}
+        {renderOptions(columnOptions)}
       </select>
 
       <select
