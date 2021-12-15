@@ -11,12 +11,16 @@ function doFilter({ column, comparison, value }, planet) {
 }
 
 function filterData(filters, data) {
+  // Preciso do renderData pra avaliar if (existe renderData) então a lógica é de usar ele ao invés do data
+  // Uma segunda opção é colocar outro componente pra renderizar se houverem filtros ativos
+
   if (data.length && filters.length) {
     const newData = data.filter((planet) => {
       const isTruthy = filters.filter((f) => doFilter(f, planet));
-      return isTruthy.length > 0;
+      console.log('isTrut', isTruthy);
+      return isTruthy.length === filters.length;
     });
-
+    console.log('newData', newData);
     return newData;
   }
 }

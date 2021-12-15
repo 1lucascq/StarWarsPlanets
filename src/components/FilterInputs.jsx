@@ -86,20 +86,20 @@ export default function FilterInputs() {
         Filtrar
       </button>
 
-      {filters.length && filters.map((fil, i) => (
-        <ul key={ i }>
-          <li>
+      <ul>
+        {filters.length && filters.map((fil, i) => (
+          <li key={ i } data-testid="filter">
             {`${fil.column} | ${fil.comparison} | ${fil.value}`}
+            <button
+              type="button"
+              id={ `${fil.column}-${i}` }
+              onClick={ ({ target }) => removeFilter(target.id) }
+            >
+              X
+            </button>
           </li>
-          <button
-            type="button"
-            id={ `${fil.column}-${i}` }
-            onClick={ ({ target }) => removeFilter(target.id) }
-          >
-            X
-          </button>
-        </ul>
-      )) }
+        )) }
+      </ul>
 
     </>
   );
