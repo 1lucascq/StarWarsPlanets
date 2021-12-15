@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import PlanetContext from '../context/PlanetsContext';
-// import filterData from '../helpers/filterData';
-// import filterResults from '../helpers/filterResults';
+import orderData from '../helpers/orderData';
 
 export default function Table() {
-  const { renderData, filters, data } = useContext(PlanetContext);
+  const { renderData, filters, data, order } = useContext(PlanetContext);
 
   function dataToRender(dataArray) {
     return (
@@ -15,7 +14,7 @@ export default function Table() {
           terrain, url } = planet;
         return (
           <tr key={ name }>
-            <td>{name}</td>
+            <td data-testid="planet-name">{name}</td>
             <td>{rotation}</td>
             <td>{orbital}</td>
             <td>{diameter}</td>
@@ -57,32 +56,9 @@ export default function Table() {
       </thead>
 
       <tbody>
-        {filters.length ? dataToRender(renderData) : dataToRender(data)}
-        {/* { renderData.map((planet) => {
-          const { name, created, climate, diameter, edited,
-            films, gravity, orbital_period: orbital,
-            population, rotation_period: rotation, surface_water: water,
-            terrain, url } = planet;
-          return (
-            <tr key={ name }>
-              <td>{name}</td>
-              <td>{rotation}</td>
-              <td>{orbital}</td>
-              <td>{diameter}</td>
-              <td>{climate}</td>
-              <td>{gravity}</td>
-              <td>{terrain}</td>
-              <td>{water}</td>
-              <td>{population}</td>
-              <td>{films.map((film) => film)}</td>
-              <td>{created}</td>
-              <td>{edited}</td>
-              <td>{url}</td>
-            </tr>
-          );
-        })} */}
+        {filters.length || order.column !== 'name' ? dataToRender(renderData)
+          : dataToRender(orderData(order, data))}
       </tbody>
-
     </table>
   );
 }

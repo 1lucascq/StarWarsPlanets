@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react';
-
 import PlanetsContext from '../context/PlanetsContext';
 
 const COMPARISON_OPTIONS = ['maior que', 'menor que', 'igual a'];
@@ -100,7 +99,6 @@ export default function FilterInputs() {
           </li>
         )) }
       </ul>
-
     </>
   );
 }
