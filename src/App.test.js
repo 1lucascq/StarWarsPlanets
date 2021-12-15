@@ -71,7 +71,6 @@ describe('1 - Faça uma requisição para o endpoint `/planets` da API de Star W
     await act(async () => {
       render(<App />);
     });
-    // a requisição (mock) retorna 14 chaves em cada planeta, mas a chave `residents` não deve ser exibida totalizando 13 colunas
     expect(await screen.findAllByRole(COLUMN_ROLE_SELECTOR)).toHaveLength(13);
   });
 
@@ -79,12 +78,11 @@ describe('1 - Faça uma requisição para o endpoint `/planets` da API de Star W
     await act(async () => {
       render(<App />);
     });
-    // a requisição (mock) retorna 10 planetas, somando com mais um linha do header totalizando 11 linhas
     expect(await screen.findAllByRole(ROW_ROLE_SELECTOR)).toHaveLength(11);
   });
 });
 
-describe('2 - Filtre a tabela através de um texto, inserido num *campo de texto*, exibindo somente os planetas cujos nomes incluam o texto digitado', () => {
+describe.only('2 - Filtre a tabela através de um texto, inserido num *campo de texto*, exibindo somente os planetas cujos nomes incluam o texto digitado', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -368,7 +366,7 @@ describe('5 - Apague o filtro de valores numéricos e desfaça as filtragens dos
   });
 });
 
-describe.only('6 - Ordene as colunas de forma ascendente ou descendente', () => {
+describe('6 - Ordene as colunas de forma ascendente ou descendente', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 

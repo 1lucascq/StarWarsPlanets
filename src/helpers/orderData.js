@@ -38,11 +38,3 @@ export function orderDataByNumbers(order, data) {
     });
   }
 }
-
-// if (sort === 'DESC') {
-//   return data.sort((a, b) => {
-//     if (Number(a[column]) > Number(b[column])) return NEGATIVE_NUMBER;
-//     if (Number(a[column]) < Number(b[column])) return 1;
-//     return 0;
-//   });
-// }

@@ -3,7 +3,7 @@ import PlanetContext from '../context/PlanetsContext';
 import orderData from '../helpers/orderData';
 
 export default function Table() {
-  const { renderData, filters, data, order } = useContext(PlanetContext);
+  const { renderData, query, filters, data, order } = useContext(PlanetContext);
 
   function dataToRender(dataArray) {
     return (
@@ -56,7 +56,7 @@ export default function Table() {
       </thead>
 
       <tbody>
-        {filters.length || order.column !== 'name' ? dataToRender(renderData)
+        {filters.length || order.column !== 'name' || !!query ? dataToRender(renderData)
           : dataToRender(orderData(order, data))}
       </tbody>
     </table>

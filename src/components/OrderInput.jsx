@@ -9,11 +9,6 @@ export default function OrderInput() {
   const { order, setOrder, renderData, setRenderData } = useContext(PlanetsContext);
   const { name } = order;
 
-  // function handleSortButton() {
-  //   // setSort(true);
-  //   setRenderData(orderDataByNumbers(order, renderData));
-  // }
-
   function renderOptions(options) {
     return (
       options.map((item, i) => (
