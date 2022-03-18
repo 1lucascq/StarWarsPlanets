@@ -1,10 +1,11 @@
+import { Paper } from '@mui/material';
 import React, { useContext } from 'react';
 import PlanetContext from '../context/PlanetsContext';
 import orderData from '../helpers/orderData';
 
 export default function Table() {
   const { renderData, query, filters, data, order } = useContext(PlanetContext);
-
+  const SLICE_NUMBER = 10;
   function dataToRender(dataArray) {
     return (
       dataArray.map((planet) => {
@@ -24,8 +25,8 @@ export default function Table() {
             <td>{water}</td>
             <td>{population}</td>
             <td>{films.map((film) => film)}</td>
-            <td>{created}</td>
-            <td>{edited}</td>
+            <td>{created.slice(0, SLICE_NUMBER)}</td>
+            <td>{edited.slice(0, SLICE_NUMBER)}</td>
             <td>{url}</td>
           </tr>
         );
@@ -36,29 +37,31 @@ export default function Table() {
   if (!data.length) return <p>Loading</p>;
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Rotation Period</th>
-          <th>Orbital Period</th>
-          <th>Diameter</th>
-          <th>Climate</th>
-          <th>Gravity</th>
-          <th>Terrain</th>
-          <th>Surface Water</th>
-          <th>Population</th>
-          <th>Films</th>
-          <th>Created</th>
-          <th>Edited</th>
-          <th>URL</th>
-        </tr>
-      </thead>
+    <Paper>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Rotation Period</th>
+            <th>Orbital Period</th>
+            <th>Diameter</th>
+            <th>Climate</th>
+            <th>Gravity</th>
+            <th>Terrain</th>
+            <th>Surface Water</th>
+            <th>Population</th>
+            <th>Films</th>
+            <th>Created</th>
+            <th>Edited</th>
+            <th>URL</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        {filters.length || order.column !== 'name' || !!query ? dataToRender(renderData)
-          : dataToRender(orderData(order, data))}
-      </tbody>
-    </table>
+        <tbody>
+          {filters.length || order.column !== 'name' || !!query ? dataToRender(renderData)
+            : dataToRender(orderData(order, data))}
+        </tbody>
+      </table>
+    </Paper>
   );
 }

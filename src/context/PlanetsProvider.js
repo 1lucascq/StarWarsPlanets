@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material';
 import PropTypes from 'prop-types';
 import PlanetsContext from './PlanetsContext';
 import filterData from '../helpers/filterData';
@@ -16,6 +17,7 @@ function Provider({ children }) {
   const [query, setQuery] = useState('');
   const [filters, setFilters] = useState([]);
   const [renderData, setRenderData] = useState([]);
+  const [darkMode, setDarkMode] = useState(true);
   const [order, setOrder] = useState(DEFAULT_ORDER);
 
   useEffect(() => {
@@ -45,22 +47,33 @@ function Provider({ children }) {
     setRenderData(orderDataByNumbers(order, renderData));
   }, [order, renderData]);
 
+  const theme = createTheme({
+    palette: { type: darkMode ? 'dark' : 'light' },
+  });
+  // console.log(darkMode);
+  // console.log(theme);
+
   return (
-    <PlanetsContext.Provider
-      value={ {
-        data,
-        query,
-        setQuery,
-        filters,
-        setFilters,
-        renderData,
-        setRenderData,
-        order,
-        setOrder,
-      } }
-    >
-      {children}
-    </PlanetsContext.Provider>
+    <ThemeProvider theme={ theme }>
+      <PlanetsContext.Provider
+        value={ {
+          data,
+          query,
+          setQuery,
+          filters,
+          setFilters,
+          renderData,
+          setRenderData,
+          order,
+          setOrder,
+          darkMode,
+          setDarkMode,
+        } }
+      >
+        {children}
+      </PlanetsContext.Provider>
+    </ThemeProvider>
+
   );
 }
 
