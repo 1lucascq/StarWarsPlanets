@@ -21,8 +21,6 @@ function getId(url) {
 }
 
 export default function RowComponent({ planetsData }) {
-  console.log(planetsData);
-
   const {
     name,
     climate,
