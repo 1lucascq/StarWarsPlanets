@@ -15,7 +15,7 @@ function App() {
       <Header />
       <MuiFilterInputs />
       {/* <SearchInputs /> */}
-      <FilterInputs />
+      {/* <FilterInputs /> */}
       {/* <OrderInput /> */}
       {/* <Table /> */}
       <MuiTable />

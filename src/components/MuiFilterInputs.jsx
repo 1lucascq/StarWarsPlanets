@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import {
   Button, FormControl, Box, InputLabel, Select, MenuItem,
-  List, ListItem, IconButton, ListItemText,
+  List, ListItem, IconButton, ListItemText, Fade,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PlanetsContext from '../context/PlanetsContext';
@@ -30,13 +30,18 @@ export default function MuiFilterInputs() {
   const { query, setQuery, data, filters, setFilters } = useContext(PlanetsContext);
   const [filter, setFilter] = useState(DEFAULT_FILTER);
   const [columnOptions, setColumnOptions] = useState(DEFAULT_OPTIONS);
+  const [show, setShow] = useState(false);
   const { column, comparison, value } = filter;
 
   useEffect(() => {
     if (data) {
       setColumnOptions(data.map((planet) => planet.name));
     }
-  }, [data]);
+    if (filters.length) {
+      return setShow(true);
+    }
+    return setShow(false);
+  }, [data, filters.length]);
 
   function handleFilterBtn() {
     setFilters([...filters, filter]);
@@ -72,12 +77,12 @@ export default function MuiFilterInputs() {
       <Box>
 
         <FormControl>
-          <InputLabel id="filter-label">Filter</InputLabel>
+          {/* <InputLabel id="filter-label">Filter</InputLabel> */}
           <Select
             labelId="filter-field-label"
             id="filter-field"
             value={ column }
-            label="filter-field"
+            // label="filter-field"
             onChange={ ({ target }) => setFilter({ ...filter, column: target.value }) }
           >
             {DEFAULT_OPTIONS.map((opt, i) => (
@@ -91,7 +96,7 @@ export default function MuiFilterInputs() {
             labelId="comparison-field-label"
             id="comparison-field"
             value={ comparison }
-            label="comparison-field"
+            // label="comparison-field"
             onChange={
               ({ target }) => setFilter({ ...filter, comparison: target.value })
             }
@@ -103,7 +108,7 @@ export default function MuiFilterInputs() {
         </FormControl>
         <TextField
           id="value"
-          label="Value"
+          // label="Value"
           type="number"
           value={ value }
           onChange={ ({ target }) => setFilter({ ...filter, value: target.value }) }
@@ -123,30 +128,34 @@ export default function MuiFilterInputs() {
       </Box>
 
       <Box sx={ { display: 'flex', flexDirection: 'column', width: '25em' } }>
-        <List dense>
-          {filters.length && filters.map((fil, i) => (
-            <ListItem
-              key={ i }
-              secondaryAction={
-                <IconButton
-                  edge="end"
-                  aria-label="delete"
-                  type="button"
-                  id={ `${fil.column}-${i}` }
-                  onClick={ () => removeFilter(fil.column) }
-                >
-                  <DeleteIcon />
-                </IconButton>
-              }
-            >
-              <ListItemText
-                primary={ `${fil.column} | ${fil.comparison} | ${fil.value}` }
+        <Fade in={ show }>
+          <List dense>
+            {filters.length ? filters.map((fil, i) => (
+              <ListItem
+                key={ i }
+                secondaryAction={
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    type="button"
+                    id={ `${fil.column}-${i}` }
+                    onClick={ () => removeFilter(fil.column) }
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                }
+              >
+                <ListItemText
+                  primary={ `${fil.column} | ${fil.comparison} | ${fil.value}` }
 
                 // secondary={ secondary ? 'Secondary text' : null }
-              />
-            </ListItem>
-          ))}
-        </List>
+                />
+              </ListItem>
+            ))
+              : <p> </p>}
+          </List>
+        </Fade>
+
       </Box>
     </Box>
   );
