@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import {
-  Button, FormControl, Box, InputLabel, Select, MenuItem,
+  Button, FormControl, Box, Grid, Select, MenuItem,
   List, ListItem, IconButton, ListItemText, Fade,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -26,6 +26,13 @@ const DEFAULT_FILTER = {
   value: '0',
 };
 
+// const boxStyle = {
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'center',
+//   dminWidth: 120,
+//   maxWidth: 3000,
+// };
 export default function MuiFilterInputs() {
   const { query, setQuery, data, filters, setFilters } = useContext(PlanetsContext);
   const [filter, setFilter] = useState(DEFAULT_FILTER);
@@ -54,35 +61,39 @@ export default function MuiFilterInputs() {
     setFilters(filters.filter((fil) => fil.column !== colValue));
   }
 
-  console.log(query);
   return (
-    <Box
-      sx={
-        { display: 'flex', flexDirection: 'column', dminWidth: 120, maxWidth: 3000 }
-      }
+    <Grid
+      container
+      spacing={ 0 }
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      // style={ { minHeight: '100vh' } }
     >
       {/* <FormControl> */}
       <Autocomplete
         disablePortal
+        fullWidth="true"
         isOptionEqualToValue={ (option, fieldValue) => option.id === fieldValue.id }
         id="nameFilter"
+        size="small"
         options={ columnOptions }
         value={ query }
         onInputChange={ (event, newQuery) => setQuery(newQuery || event.target.value) }
-        sx={ { width: 300 } }
+        sx={ { width: '22em', py: '1em' } }
         renderInput={ (params) => <TextField { ...params } label="Planet Search" /> }
       />
       {/* </FormControl> */}
 
-      <Box>
+      <Box fullWidth="true">
 
         <FormControl>
-          {/* <InputLabel id="filter-label">Filter</InputLabel> */}
           <Select
             labelId="filter-field-label"
             id="filter-field"
+            size="small"
+            sx={ { width: '9.8em' } }
             value={ column }
-            // label="filter-field"
             onChange={ ({ target }) => setFilter({ ...filter, column: target.value }) }
           >
             {DEFAULT_OPTIONS.map((opt, i) => (
@@ -95,8 +106,8 @@ export default function MuiFilterInputs() {
           <Select
             labelId="comparison-field-label"
             id="comparison-field"
+            size="small"
             value={ comparison }
-            // label="comparison-field"
             onChange={
               ({ target }) => setFilter({ ...filter, comparison: target.value })
             }
@@ -108,9 +119,10 @@ export default function MuiFilterInputs() {
         </FormControl>
         <TextField
           id="value"
-          // label="Value"
           type="number"
+          size="small"
           value={ value }
+          sx={ { width: '4em' } }
           onChange={ ({ target }) => setFilter({ ...filter, value: target.value }) }
           InputLabelProps={ {
             shrink: true,
@@ -120,6 +132,7 @@ export default function MuiFilterInputs() {
         <FormControl />
         <Button
           variant="outlined"
+          sx={ { height: '2.85em' } }
           onClick={ handleFilterBtn }
           type="button"
         >
@@ -157,6 +170,6 @@ export default function MuiFilterInputs() {
         </Fade>
 
       </Box>
-    </Box>
+    </Grid>
   );
 }
