@@ -5,8 +5,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 // import IconButton from '@mui/material/IconButton';
 // import MenuIcon from '@mui/icons-material/Menu';
-import { Paper, Switch } from '@mui/material';
+import { Paper } from '@mui/material';
 import PlanetsContext from '../context/PlanetsContext';
+import UseSwitchesCustom from './DarkThemeSwitch';
 
 export default function Header() {
   const { darkMode, setDarkMode } = useContext(PlanetsContext);
@@ -27,11 +28,12 @@ export default function Header() {
             <Typography variant="h6" component="div" sx={ { flexGrow: 1 } }>
               StarWars Planets API
             </Typography>
-            <Switch
+            <UseSwitchesCustom />
+            {/* <Switch
               color="secondary"
               checked={ darkMode }
               onChange={ () => setDarkMode(!darkMode) }
-            />
+            /> */}
           </Toolbar>
         </AppBar>
       </Box>

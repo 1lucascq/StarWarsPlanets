@@ -2,13 +2,13 @@ import React, { useContext, useState, useEffect } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 const COMPARISON_OPTIONS = ['maior que', 'menor que', 'igual a'];
+const DEFAULT_FILTER = {
+  column: 'population',
+  comparison: 'maior que',
+  value: '0',
+};
 
 export default function FilterInputs() {
-  const DEFAULT_FILTER = {
-    column: 'population',
-    comparison: 'maior que',
-    value: '0',
-  };
   const { filters, setFilters } = useContext(PlanetsContext);
   const [filter, setFilter] = useState(DEFAULT_FILTER);
   const { column, comparison, value } = filter;
