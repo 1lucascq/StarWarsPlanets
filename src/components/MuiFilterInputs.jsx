@@ -92,7 +92,9 @@ export default function MuiFilterInputs() {
             id="comparison-field"
             value={ comparison }
             label="comparison-field"
-            onChange={ ({ target }) => setFilter({ ...filter, comparison: target.value }) }
+            onChange={
+              ({ target }) => setFilter({ ...filter, comparison: target.value })
+            }
           >
             {COMPARISON_OPTIONS.map((opt, i) => (
               <MenuItem key={ i } value={ opt.value }>{opt.name}</MenuItem>
