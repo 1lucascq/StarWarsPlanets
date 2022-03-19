@@ -49,10 +49,10 @@ export default function RowComponent({ planetsData }) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
+        <TableCell align="left">{getId(url)}</TableCell>
         <TableCell component="th" scope="row">
           {name}
         </TableCell>
-        <TableCell align="left">{getId(url)}</TableCell>
         <TableCell align="left">{rotation}</TableCell>
         <TableCell align="left">{orbital}</TableCell>
         <TableCell align="left">{diameter}</TableCell>

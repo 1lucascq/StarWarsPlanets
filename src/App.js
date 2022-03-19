@@ -6,7 +6,7 @@ import Header from './components/Header';
 import MuiTable from './components/MuiTable';
 import SearchInputs from './components/SearchInputs';
 import FilterInputs from './components/FilterInputs';
-import OrderInput from './components/OrderInput';
+// import OrderInput from './components/OrderInput';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Header />
       <SearchInputs />
       <FilterInputs />
-      <OrderInput />
+      {/* <OrderInput /> */}
       {/* <Table /> */}
       <MuiTable />
     </PlanetsProvider>

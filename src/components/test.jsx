@@ -21,12 +21,12 @@ export default function CollapsibleTable() {
   const [sortOrderBy, setSortOrderBy] = useState('');
 
   const tableHeaders = [
-    { name: 'Name', id: 'name' },
-    { name: 'Rotation Period', id: 'rotation_period' },
-    { name: 'Orbital Period', id: 'orbital_period' },
+    { name: 'Name', id: 'name' }, { name: 'ID', id: 'id' },
+    { name: 'Rotation Period', id: 'rotationPeriod' },
+    { name: 'Orbital Period', id: 'orbitalPeriod' },
     { name: 'Diameter', id: 'diameter' }, { name: 'Climate', id: 'climate' },
     { name: 'Gravity', id: 'gravity' }, { name: 'Terrain', id: 'terrain' },
-    { name: 'Surface Water', id: 'surface_water' },
+    { name: 'Surface Water', id: 'surfaceWater' },
     { name: 'Population', id: 'population' },
   ];
 
@@ -37,18 +37,19 @@ export default function CollapsibleTable() {
   function handleSort(cellId) {
     const isAsc = sortOrderBy === cellId && sortOrder === 'asc';
     const sortDirection = { sort: isAsc ? 'desc' : 'asc', column: cellId };
-
-    setSortOrder(sortDirection.sort);
+    console.log(isAsc, cellId, sortOrderBy);
+    setSortOrder(sortDirection);
     setSortOrderBy(cellId);
-
-    if (['name', 'climate', 'terrain', 'gravity'].includes(cellId)) {
-      setOrderedData(orderDataByNumbers(sortDirection, renderData));
+    if (cellId === 'name') {
       return setRenderData(orderDataByName(sortDirection, renderData));
     }
-
-    setOrderedData(orderDataByNumbers(sortDirection, renderData));
     return setRenderData(orderDataByNumbers(sortDirection, renderData));
   }
+
+  console.log(data);
+  console.log(renderData);
+  // console.log(!!renderData.length);
+  console.log(order);
 
   return (
     <TableContainer component={ Paper }>
@@ -56,7 +57,6 @@ export default function CollapsibleTable() {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>ID</TableCell>
             {tableHeaders.map(({ name, id }) => (
               <TableCell key={ id }>
                 <TableSortLabel

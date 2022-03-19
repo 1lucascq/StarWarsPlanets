@@ -1,8 +1,8 @@
-export default function orderData(order, data) {
+export default function orderDataByName(order, data) {
   const NEGATIVE_NUMBER = -1;
   const { column, sort } = order;
 
-  if (sort === 'ASC') {
+  if (sort.toUpperCase() === 'ASC') {
     return data.sort((a, b) => {
       if (a[column] > b[column]) return 1;
       if (a[column] < b[column]) return NEGATIVE_NUMBER;
@@ -10,7 +10,7 @@ export default function orderData(order, data) {
     });
   }
 
-  if (sort === 'DESC') {
+  if (sort.toUpperCase() === 'DESC') {
     return data.sort((a, b) => {
       if (a[column] > b[column]) return NEGATIVE_NUMBER;
       if (a[column] < b[column]) return 1;
@@ -22,7 +22,8 @@ export default function orderData(order, data) {
 export function orderDataByNumbers(order, data) {
   const NEGATIVE_NUMBER = -1;
   const { column, sort } = order;
-  if (sort === 'ASC') {
+
+  if (sort.toUpperCase() === 'ASC') {
     return data.sort((a, b) => {
       if (Number(a[column]) > Number(b[column])) return 1;
       if (Number(a[column]) < Number(b[column])) return NEGATIVE_NUMBER;
@@ -30,7 +31,7 @@ export function orderDataByNumbers(order, data) {
     });
   }
 
-  if (sort === 'DESC') {
+  if (sort.toUpperCase() === 'DESC') {
     return data.sort((a, b) => {
       if (Number(a[column]) > Number(b[column])) return NEGATIVE_NUMBER;
       if (Number(a[column]) < Number(b[column])) return 1;

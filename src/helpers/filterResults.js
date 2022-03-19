@@ -6,7 +6,7 @@ function filterResults(query, data, filters) {
     return filteredResults;
   }
   const filteredData = filterData(filters, data);
-  console.log('filteredData in filterData', filteredData);
+  console.log('filteredData in filterData.js', filteredData);
   const filteredResults = data.filter(({ name }) => name.includes(query));
   return filteredResults;
 }
