@@ -42,6 +42,9 @@ export default function FilterInputs() {
 
   function removeFilter(id) {
     const info = id.split('-');
+    console.log(id);
+    console.log(info);
+    console.log(info[0]);
     setFilters(filters.filter((filt) => filt.column !== filters[Number(info[1])].column));
     columnOptions.push(info[0]);
   }

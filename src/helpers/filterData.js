@@ -1,4 +1,6 @@
-function doFilter({ column, comparison, value }, planet) {
+function doFilter(filter, planet) {
+  console.log(filter);
+  const { column, comparison, value } = filter;
   if (comparison === 'maior que') {
     return Number(planet[column]) > Number(value);
   }
