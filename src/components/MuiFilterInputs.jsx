@@ -63,7 +63,7 @@ export default function MuiFilterInputs() {
         id="nameFilter"
         options={ columnOptions }
         value={ query }
-        onInputChange={ (event, newQuery) => setQuery(newQuery) }
+        onInputChange={ (event, newQuery) => setQuery(newQuery || event.target.value) }
         sx={ { width: 300 } }
         renderInput={ (params) => <TextField { ...params } label="Planet Search" /> }
       />
