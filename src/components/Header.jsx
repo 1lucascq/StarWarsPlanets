@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 // import MenuIcon from '@mui/icons-material/Menu';
 import { Paper } from '@mui/material';
 // import PlanetsContext from '../context/PlanetsContext';
-// import StarWarsFont from '../assets/fonts/starwarsfont.ttf';
+import StarWarsFont from '../assets/fonts/starwarsfont.ttf';
 
 // const theme = createTheme({
 //   typography: {
@@ -34,19 +34,22 @@ export default function Header() {
   return (
     <Paper>
       <Box>
-        <AppBar position="static" sx={ { alignItems: 'center' } }>
+        <AppBar
+          position="static"
+          sx={ { alignItems: 'center' } }
+        >
           <Toolbar>
             {/* <ThemeProvider theme={ theme }>
               <CssBaseline /> */}
             <Typography
               variant="h6"
               component="div"
+              fontFamily={ StarWarsFont }
               sx={ { fontFamily: 'StarWarsFont' } }
             >
               StarWars Planets Search
             </Typography>
             {/* </ThemeProvider> */}
-
           </Toolbar>
         </AppBar>
       </Box>
