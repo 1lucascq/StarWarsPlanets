@@ -4,17 +4,18 @@ import { Paper } from '@mui/material';
 import starWarsHeader from '../assets/bg/star-wars-header.png';
 
 export default function Header() {
-// Preciso de uma forma de dar esse override no Header.
   return (
     <Paper sx={ { backgroundImage: '#000000', backgroundColor: '#000000' } }>
       <AppBar
         position="static"
-        sx={ { alignItems: 'center' } }
+        sx={ {
+          alignItems: 'center',
+          backgroundColor: 'black',
+          backgroundImage:
+            'linear-gradient(90deg, rgba(13, 13, 13, 0.3), rgba(13, 13, 13, 0.3))',
+        } }
       >
-        <img
-          src={ starWarsHeader }
-          alt="header logo"
-        />
+        <img src={ starWarsHeader } alt="header logo" />
       </AppBar>
     </Paper>
   );
