@@ -32,8 +32,8 @@ import { CssBaseline, Paper } from '@mui/material';
 
 export default function Header() {
   return (
-    <Paper>
-      <Box>
+    <Paper color="dark">
+      <Box color="black">
         <AppBar position="static" sx={ { alignItems: 'center' } }>
           <Toolbar>
             {/* <ThemeProvider theme={ theme }>
