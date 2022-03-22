@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-max-depth */
 import React from 'react';
-import { createTheme } from '@mui/system';
-import { ThemeProvider } from '@emotion/react';
+// import { createTheme } from '@mui/system';
+// import { ThemeProvider } from '@emotion/react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 // import IconButton from '@mui/material/IconButton';
 // import MenuIcon from '@mui/icons-material/Menu';
-import { CssBaseline, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 // import PlanetsContext from '../context/PlanetsContext';
 // import StarWarsFont from '../assets/fonts/starwarsfont.ttf';
 
@@ -32,8 +32,8 @@ import { CssBaseline, Paper } from '@mui/material';
 
 export default function Header() {
   return (
-    <Paper color="dark">
-      <Box color="black">
+    <Paper>
+      <Box>
         <AppBar position="static" sx={ { alignItems: 'center' } }>
           <Toolbar>
             {/* <ThemeProvider theme={ theme }>
