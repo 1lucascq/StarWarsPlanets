@@ -76,9 +76,7 @@ export default function MuiFilterInputs() {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      // style={ { minHeight: '100vh' } }
     >
-      {/* <FormControl> */}
       <Autocomplete
         disablePortal
         fullWidth="true"
@@ -91,7 +89,6 @@ export default function MuiFilterInputs() {
         sx={ { width: '22em', py: '1em' } }
         renderInput={ (params) => <TextField { ...params } label="Planet Search" /> }
       />
-      {/* </FormControl> */}
 
       <Box fullWidth="true">
 
@@ -148,7 +145,7 @@ export default function MuiFilterInputs() {
         </Button>
       </Box>
 
-      <Box sx={ { display: 'flex', flexDirection: 'column', width: '25em' } }>
+      <Box sx={ { display: 'flex', flexDirection: 'column', width: '23.5em' } }>
         <Fade in={ show }>
           <List dense>
             {filters.length ? filters.map((fil, i) => (
@@ -169,7 +166,6 @@ export default function MuiFilterInputs() {
                 <ListItemText
                   primary={ `${fil.column} | ${fil.comparison} | ${fil.value}` }
 
-                // secondary={ secondary ? 'Secondary text' : null }
                 />
               </ListItem>
             ))
