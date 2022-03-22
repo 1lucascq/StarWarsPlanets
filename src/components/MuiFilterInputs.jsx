@@ -61,6 +61,14 @@ export default function MuiFilterInputs() {
     setFilters(filters.filter((fil) => fil.column !== colValue));
   }
 
+  function isOptionEqualToValue(option, fieldValue) {
+    console.log(option);
+    console.log(fieldValue);
+    if (!fieldValue) return true;
+    if (option.name) return option.name.includes(fieldValue);
+    if (!option.name) return option.toLowerCase().includes(fieldValue.toLowerCase());
+  }
+
   return (
     <Grid
       container
@@ -74,7 +82,7 @@ export default function MuiFilterInputs() {
       <Autocomplete
         disablePortal
         fullWidth="true"
-        isOptionEqualToValue={ (option, fieldValue) => option.id === fieldValue.id }
+        isOptionEqualToValue={ (opt, fldValue) => isOptionEqualToValue(opt, fldValue) }
         id="nameFilter"
         size="small"
         options={ columnOptions }

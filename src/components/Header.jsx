@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-max-depth */
-import React, { useContext } from 'react';
+import React from 'react';
 import { createTheme } from '@mui/system';
 import { ThemeProvider } from '@emotion/react';
 import AppBar from '@mui/material/AppBar';
@@ -9,8 +9,7 @@ import Typography from '@mui/material/Typography';
 // import IconButton from '@mui/material/IconButton';
 // import MenuIcon from '@mui/icons-material/Menu';
 import { CssBaseline, Paper } from '@mui/material';
-import PlanetsContext from '../context/PlanetsContext';
-import UseSwitchesCustom from './DarkThemeSwitch';
+// import PlanetsContext from '../context/PlanetsContext';
 // import StarWarsFont from '../assets/fonts/starwarsfont.ttf';
 
 // const theme = createTheme({
@@ -32,38 +31,22 @@ import UseSwitchesCustom from './DarkThemeSwitch';
 //     } } });
 
 export default function Header() {
-  const { darkMode, setDarkMode } = useContext(PlanetsContext);
   return (
     <Paper>
-      <Box sx={ { flexGrow: 1 } }>
-        <AppBar position="static">
+      <Box>
+        <AppBar position="static" sx={ { alignItems: 'center' } }>
           <Toolbar>
-            {/* <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={ { mr: 2 } }
-            >
-              <MenuIcon />
-            </IconButton> */}
             {/* <ThemeProvider theme={ theme }>
               <CssBaseline /> */}
             <Typography
               variant="h6"
               component="div"
-              sx={ { flexGrow: 1, fontFamily: 'StarWarsFont' } }
+              sx={ { fontFamily: 'StarWarsFont' } }
             >
-              StarWars Planets API
+              StarWars Planets Search
             </Typography>
             {/* </ThemeProvider> */}
 
-            <UseSwitchesCustom />
-            {/* <Switch
-              color="secondary"
-              checked={ darkMode }
-              onChange={ () => setDarkMode(!darkMode) }
-            /> */}
           </Toolbar>
         </AppBar>
       </Box>
