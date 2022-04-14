@@ -16,23 +16,16 @@ const DEFAULT_OPTIONS = [
   { name: 'Surface Water', value: 'surface_water' },
 ];
 const COMPARISON_OPTIONS = [
-  { name: '>', value: 'maior que' },
-  { name: '<', value: 'menor que' },
-  { name: '=', value: 'igual a' },
+  { name: '>', value: 'bigger than' },
+  { name: '<', value: 'smaller than' },
+  { name: '=', value: 'equals to' },
 ];
 const DEFAULT_FILTER = {
   column: 'population',
-  comparison: 'maior que',
+  comparison: 'bigger than',
   value: '0',
 };
 
-// const boxStyle = {
-//   display: 'flex',
-//   flexDirection: 'column',
-//   justifyContent: 'center',
-//   dminWidth: 120,
-//   maxWidth: 3000,
-// };
 export default function MuiFilterInputs() {
   const { query, setQuery, data, filters, setFilters } = useContext(PlanetsContext);
   const [filter, setFilter] = useState(DEFAULT_FILTER);
@@ -84,11 +77,11 @@ export default function MuiFilterInputs() {
         options={ columnOptions }
         value={ query }
         onInputChange={ (event, newQuery) => setQuery(newQuery || event.target.value) }
-        sx={ { width: '22em', py: '1em' } }
+        sx={ { width: '28.7em', py: '1em' } }
         renderInput={ (params) => <TextField { ...params } label="Planet Search" /> }
       />
 
-      <Box fullWidth="true">
+      <Box sx={ { display: 'flex', gap: '0.4em' } }>
 
         <FormControl>
           <Select
@@ -125,7 +118,7 @@ export default function MuiFilterInputs() {
           type="number"
           size="small"
           value={ value }
-          sx={ { width: '4em' } }
+          sx={ { width: '9em' } }
           onChange={ ({ target }) => setFilter({ ...filter, value: target.value }) }
           InputLabelProps={ {
             shrink: true,
@@ -143,7 +136,7 @@ export default function MuiFilterInputs() {
         </Button>
       </Box>
 
-      <Box sx={ { display: 'flex', flexDirection: 'column', width: '23.5em' } }>
+      <Box sx={ { display: 'flex', flexDirection: 'column', width: '30em' } }>
         <Fade in={ show }>
           <List dense>
             {filters.length ? filters.map((fil, i) => (

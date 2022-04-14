@@ -1,12 +1,12 @@
 function doFilter(filter, planet) {
   const { column, comparison, value } = filter;
-  if (comparison === 'maior que') {
+  if (comparison === 'bigger than') {
     return Number(planet[column]) > Number(value);
   }
-  if (comparison === 'menor que') {
+  if (comparison === 'smaller than') {
     return Number(planet[column]) < Number(value);
   }
-  if (comparison === 'igual a') {
+  if (comparison === 'equals to') {
     return Number(planet[column]) === Number(value);
   }
 }
