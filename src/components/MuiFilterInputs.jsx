@@ -62,8 +62,6 @@ export default function MuiFilterInputs() {
   }
 
   function isOptionEqualToValue(option, fieldValue) {
-    console.log(option);
-    console.log(fieldValue);
     if (!fieldValue) return true;
     if (option.name) return option.name.includes(fieldValue);
     if (!option.name) return option.toLowerCase().includes(fieldValue.toLowerCase());

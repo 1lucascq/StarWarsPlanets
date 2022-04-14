@@ -50,8 +50,6 @@ function Provider({ children }) {
   const theme = createTheme({
     palette: { type: darkMode ? 'dark' : 'light' },
   });
-  // console.log(darkMode);
-  // console.log(theme);
   return (
     <ThemeProvider theme={ theme }>
       <PlanetsContext.Provider
